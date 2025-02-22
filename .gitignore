@@ -1,0 +1,9 @@
+bin/
+obj/
+node_modules/
+*.user
+*.suo
+*.vs/
+*.DS_Store
+*.log
+.env

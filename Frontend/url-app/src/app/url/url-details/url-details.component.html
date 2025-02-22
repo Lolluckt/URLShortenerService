@@ -1,0 +1,29 @@
+<nav class="top-nav">
+  <div class="logo">URL Shortener</div>
+  <div class="menu-right">
+    <button (click)="goBack()">Back to List</button>
+  </div>
+</nav>
+
+<div class="detail-container">
+  <h2>URL Details</h2>
+
+  <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="detail-card" *ngIf="details">
+    <p><b>ID:</b> {{ details.id }}</p>
+    
+    <p><b>Original URL:</b>
+      <a [href]="details.originalUrl" target="_blank">{{ details.originalUrl }}</a>
+    </p>
+
+    <p><b>Short URL:</b>
+      <a [href]="details.shortUrl" target="_blank">{{ details.shortUrl }}</a>
+    </p>
+    <p><b>Created By:</b> {{ details.createdByEmail }}</p>
+    <p><b>Created Date:</b> {{ details.createdDate | date:'medium' }}</p>
+    <p><b>Updated Date:</b>
+      {{ details.updatedDate ? (details.updatedDate | date:'medium') : '—' }}
+    </p>
+  </div>
+</div>

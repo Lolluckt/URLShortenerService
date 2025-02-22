@@ -1,0 +1,50 @@
+    :host {
+    min-height: 100vh;
+    background: linear-gradient(45deg, #ff8a00, #e52e71, #007adf);
+    background-size: 600% 600%;
+    animation: gradientAnimation 15s ease infinite;
+    display: block;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  router-outlet {
+    display: block;
+    padding-bottom: 4rem;
+  }
+  
+  .global-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    z-index: 9999;
+  
+    .footer-link {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 0.4rem;
+    
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+  }
+
+  

@@ -1,0 +1,30 @@
+<nav class="top-nav">
+    <div class="logo">URL Shortener</div>
+    <div class="menu-right">
+      <button class="btn-back" (click)="goBack()">Back</button>
+    </div>
+  </nav>
+  
+  <div class="about-container">
+    <h2>About the URL Shortener</h2>
+
+    <div class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="!isEditing">
+      <p class="about-text">
+        {{ aboutContent }}
+      </p>
+      <button *ngIf="isAdmin" class="btn-edit" (click)="startEditing()">Edit</button>
+    </div>
+  
+    <div *ngIf="isEditing" class="edit-form">
+      <textarea [(ngModel)]="aboutContent" rows="8"></textarea>
+      <div class="edit-buttons">
+        <button class="btn-save" (click)="saveAbout()">Save</button>
+        <button class="btn-cancel" (click)="cancelEditing()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  

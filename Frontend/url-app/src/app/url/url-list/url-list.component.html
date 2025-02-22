@@ -1,0 +1,79 @@
+<nav class="top-nav">
+  <div class="logo">URL Shortener</div>
+  <div class="menu-right">
+    <span class="welcome-text" *ngIf="auth.isAuthenticated()">
+      Welcome, {{ auth.getFullName() }}
+    </span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="url-list-container">
+  <h2>Short URLs</h2>
+
+  <div class="add-url-box">
+    <h3>Add new URL</h3>
+    <div class="input-row">
+      <input
+        [(ngModel)]="newUrl"
+        placeholder="Enter original URL"
+      />
+      <button class="btn-add" (click)="addUrl()">Shorten</button>
+    </div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div class="short-result" *ngIf="savedShortUrl">
+      <label>Your short URL:</label>
+      <div class="short-link-animated">
+        <input type="text" [value]="savedShortUrl" readonly #shortInput />
+        <button class="btn-copy" (click)="copyShortLink(shortInput)">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <table class="url-table">
+    <thead>
+      <tr>
+        <th>Original URL</th>
+        <th>Short URL</th>
+        <th>Created By</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let url of urls"
+        (click)="goToDetails(url.id)"
+        class="table-row"
+      >
+        <td>{{ url.originalUrl }}</td>
+        <td>
+          <a
+            [href]="'https://localhost:7266/' + url.shortUrl"
+            target="_blank"
+            (click)="$event.stopPropagation()"
+            >{{ url.shortUrl }}</a
+          >
+        </td>
+        <td>{{ url.createdByEmail }}</td>
+        <td>
+          <button
+            *ngIf="canDelete(url)"
+            (click)="deleteUrl(url.id); $event.stopPropagation()"
+            class="btn-delete"
+          >
+            Delete
+          </button>
+
+          <button
+            class="btn-details"
+            (click)="goToDetails(url.id); $event.stopPropagation()"
+          >
+            Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

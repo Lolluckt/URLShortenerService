@@ -1,0 +1,108 @@
+<div class="register-container">
+  <div class="welcome-box">
+    <h1 class="animated-title">Ready to use URL Shortener?</h1>
+    <p class="animated-subtitle">
+      Fill out the fields below to create an account and start shortening your links in no time!
+    </p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm" novalidate>
+    <div class="register-card">
+      <h2>Register</h2>
+
+      <div class="form-group" [ngClass]="{'has-error': errorMessage}">
+        <label for="firstName">First Name:</label>
+        <input
+          id="firstName"
+          type="text"
+          [(ngModel)]="firstName"
+          name="firstName"
+          required
+        />
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': errorMessage}">
+        <label for="lastName">Last Name:</label>
+        <input
+          id="lastName"
+          type="text"
+          [(ngModel)]="lastName"
+          name="lastName"
+          required
+        />
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-error': (emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)) || errorMessage
+        }"
+      >
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          type="text"
+          [(ngModel)]="email"
+          name="email"
+          required
+          #emailCtrl="ngModel"
+          pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+        />
+
+        <div class="local-error-space">
+          <small
+            class="local-error"
+            *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)"
+          >
+            Please enter a valid email address
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': errorMessage}">
+        <label for="password">Password:</label>
+        <div class="password-container">
+          <input
+            id="password"
+            [type]="hidePassword ? 'password' : 'text'"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
+            <i *ngIf="hidePassword" class="fa fa-eye-slash"></i>
+            <i *ngIf="!hidePassword" class="fa fa-eye"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': errorMessage}">
+        <label for="confirmPassword">Confirm Password:</label>
+        <div class="password-container">
+          <input
+            id="confirmPassword"
+            [type]="hideConfirmPassword ? 'password' : 'text'"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            required
+          />
+          <span class="toggle-password" (click)="toggleConfirmPasswordVisibility()">
+            <i *ngIf="hideConfirmPassword" class="fa fa-eye-slash"></i>
+            <i *ngIf="!hideConfirmPassword" class="fa fa-eye"></i>
+          </span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-fullwidth">Sign Up</button>
+
+      <div class="extra-links">
+        <span>Already have an account?</span>
+        <button type="button" (click)="goToLogin()">Login</button>
+      </div>
+
+      <div class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </form>
+</div>
