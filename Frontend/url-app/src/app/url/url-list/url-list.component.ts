@@ -49,7 +49,7 @@ export class UrlListComponent implements OnInit {
     this.urlService.createUrl(this.newUrl).subscribe({
       next: (createdUrl) => {
         this.newUrl = '';
-        this.savedShortUrl = `https://localhost:7266/${createdUrl.shortUrl}`;
+        this.savedShortUrl = `https://urlservice-backend.onrender.com/${createdUrl.shortUrl}`;
         this.loadUrls();
       },
       error: (err) => {

@@ -25,7 +25,7 @@ export interface UrlDetailsDto {
 })
 export class UrlService {
   private http = inject(HttpClient);
-  private baseUrl = 'https://localhost:7266/api/url';
+  private baseUrl = 'https://urlservice-backend.onrender.com/api/url';
 
   getAllUrls() {
     return this.http.get<UrlDto[]>(`${this.baseUrl}/all`);

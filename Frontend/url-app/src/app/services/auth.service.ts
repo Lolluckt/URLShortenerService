@@ -15,7 +15,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<{ user: any; token: string }>(
-      'https://localhost:7266/api/auth/login',
+      'https://urlservice-backend.onrender.com/api/auth/login',
       { email, password }
     ).pipe(
       tap(response => {
@@ -30,7 +30,7 @@ export class AuthService {
 
   register(data: { firstName: string; lastName: string; email: string; password: string }) {
     return this.http.post(
-      'https://localhost:7266/api/auth/register',
+      'https://urlservice-backend.onrender.com/api/auth/register',
       data
     );
   }

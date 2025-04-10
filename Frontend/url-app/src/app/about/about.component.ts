@@ -37,7 +37,7 @@ export class AboutComponent implements OnInit {
   }
 
   loadAbout() {
-    this.http.get<AboutDto>('https://localhost:7266/api/about')
+    this.http.get<AboutDto>('https://urlservice-backend.onrender.com/api/about')
       .subscribe({
         next: (res) => {
           this.aboutId = res.id;
@@ -71,7 +71,7 @@ export class AboutComponent implements OnInit {
       content: this.aboutContent
     };
 
-    this.http.post('https://localhost:7266/api/about', dto)
+    this.http.post('https://urlservice-backend.onrender.com/api/about', dto)
       .subscribe({
         next: () => {
           this.isEditing = false;

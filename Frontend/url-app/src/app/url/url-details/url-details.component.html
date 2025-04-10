@@ -18,7 +18,7 @@
     </p>
 
     <p><b>Short URL:</b>
-      <a [href]="details.shortUrl" target="_blank">{{ details.shortUrl }}</a>
+      <a [href]="'https://urlservice-backend.onrender.com/' + details.shortUrl" target="_blank">{{ details.shortUrl }}</a>
     </p>
     <p><b>Created By:</b> {{ details.createdByEmail }}</p>
     <p><b>Created Date:</b> {{ details.createdDate | date:'medium' }}</p>
